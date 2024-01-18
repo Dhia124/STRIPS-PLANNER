@@ -1,0 +1,26 @@
+Initial state: At(Dock1), ItemAt(ItemX, Dock1), OnBottom(ItemX), OnTop(ItemX), ItemAt(ItemY, Dock2), ItemAt(ItemZ, Dock2), On(ItemY, ItemZ), OnBottom(ItemZ), OnTop(ItemY), Empty(Dock3)
+Goal state: ItemAt(ItemX, Dock2), On(ItemX, ItemY)
+
+Actions: 
+        Move(From, To)
+        Preconditions: At(From), !At(To)
+        Postconditions: At(To), !At(From)
+
+        StackOn(Item1, Item2, Dock)
+        Preconditions: At(Dock), Holding(Item1), ItemAt(Item2, Dock), OnTop(Item2)
+        Postconditions: !Holding(Item1), !OnTop(Item2), ItemAt(Item1, Dock), OnTop(Item1), On(Item1, Item2)
+
+        PlaceOnEmpty(Item1, Dock)
+        Preconditions: At(Dock), Holding(Item1), Empty(Dock)
+        Postconditions: !Holding(Item1), OnTop(Item1), ItemAt(Item1, Dock), OnBottom(Item1), !Empty(Dock)
+
+        PickUp(Item1, Item2, Dock)
+        Preconditions: At(Dock), OnTop(Item1), ItemAt(Item1, Dock), On(Item1, Item2)
+        Postconditions: Holding(Item1), !OnTop(Item1), !ItemAt(Item1, Dock), !On(Item1, Item2), OnTop(Item2)
+
+        PickUpLast(Item1, Dock)
+        Preconditions: At(Dock), ItemAt(Item1, Dock), OnTop(Item1), OnBottom(Item1)
+        Postconditions: Holding(Item1), !ItemAt(Item1, Dock), !OnTop(Item1), !OnBottom(Item1), Empty(Dock)
+
+
+

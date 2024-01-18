@@ -1,0 +1,25 @@
+Initial state: At(Shelf1), PackageAt(PackageA, Shelf1), OnBottom(PackageA), OnTop(PackageA), PackageAt(PackageB, Shelf2), PackageAt(PackageC, Shelf2), On(PackageB, PackageC), OnBottom(PackageC), OnTop(PackageB), Empty(Shelf3)
+Goal state: PackageAt(PackageA, Shelf2), On(PackageA, PackageB)
+
+
+Actions:
+        Go(From, To)
+        Preconditions: At(From), !At(To)
+        Postconditions: At(To), !At(From)
+
+        PlaceOn(Package1, Package2, Shelf)
+        Preconditions: At(Shelf), Holding(Package1), PackageAt(Package2, Shelf), OnTop(Package2)
+        Postconditions: !Holding(Package1), !OnTop(Package2), PackageAt(Package1, Shelf), OnTop(Package1), On(Package1, Package2)
+
+        PlaceOnEmpty(Package1, Shelf)
+        Preconditions: At(Shelf), Holding(Package1), Empty(Shelf)
+        Postconditions: !Holding(Package1), OnTop(Package1), PackageAt(Package1, Shelf), OnBottom(Package1), !Empty(Shelf)
+
+        PickUp(Package1, Package2, Shelf)
+        Preconditions: At(Shelf), OnTop(Package1), PackageAt(Package1, Shelf), On(Package1, Package2)
+        Postconditions: Holding(Package1), !OnTop(Package1), !PackageAt(Package1, Shelf), !On(Package1, Package2), OnTop(Package2)
+
+        PickUpLast(Package1, Shelf)
+        Preconditions: At(Shelf), PackageAt(Package1, Shelf), OnTop(Package1), OnBottom(Package1)
+        Postconditions: Holding(Package1), !PackageAt(Package1, Shelf), !OnTop(Package1), !OnBottom(Package1), Empty(Shelf)
+

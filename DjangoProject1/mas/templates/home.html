@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strips Planner</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #f7f7f7;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            color: #4CAF50;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        .solution-plan {
+            font-weight: bold;
+            color: #008000;
+            white-space: pre-wrap;
+        }
+
+        .no-solution {
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        @media screen and (max-width: 600px) {
+            section {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Strips Planner</h1>
+    </header>
+
+    <section>
+        <h2>Upload a file:</h2>
+        <form method="post" enctype="multipart/form-data" action="{% url 'home' %}">
+            {% csrf_token %}
+            <input type="file" name="file" required>
+            <button type="submit">Upload</button>
+        </form>
+        <h2>Goal already solved? {% if already_solved %}Yes{% else %}No{% endif %}</h2>
+
+        <h2>Solving with Depth-First Search:</h2>
+        {% if solution_depth_first %}
+            <h3>Solved !!!!!</h3>
+            <p class="solution-plan">Plan: 
+                {{ solution_depth_first }}
+            </p>
+        {% else %}
+            <h3>Not Solved</h3>
+            <p class="no-solution">No solution found :(</p>
+        {% endif %}
+
+        <h2>Solving with Breadth-First Search:</h2>
+        {% if solution_breadth_first %}
+            <h3>Solved !!!!!</h3>
+            <p class="solution-plan">Plan: 
+                {{ solution_breadth_first }}
+            </p>
+        {% else %}
+            <h3>Not Solved</h3>
+            <p class="no-solution">No solution found :(</p>
+        {% endif %}
+    </section>
+</body>
+</html>

@@ -1,0 +1,28 @@
+Initial state: CoconutsAt(D), At(A), Level(low), BoxAt(B)
+Goal state: Have(Coconuts), BoxAt(D)
+
+Actions:
+
+        Move(X, Y)
+        Preconditions: At(X), Level(low)
+        Postconditions: !At(X), At(Y)
+
+  
+        ClimbUp(Location)
+        Preconditions:  At(Location), BoxAt(Location), Level(low)
+        Postconditions: Level(high), !Level(low)
+           
+        
+        ClimbDown(Location)
+        Preconditions:  At(Location), BoxAt(Location), Level(high)
+        Postconditions: Level(low), !Level(high)
+           
+          
+        MoveBox(X, Y)
+        Preconditions:  At(X), BoxAt(X), Level(low)
+        Postconditions: BoxAt(Y), !BoxAt(X), At(Y), !At(X)
+           
+
+        TakeCoconuts(Location)
+        Preconditions:  CoconutsAt(Location), At(Location), Level(high)
+        Postconditions: Have(Coconuts)     

@@ -1,0 +1,15 @@
+Initial state: At(ExplorationRobot, BaseCamp) At(SampleCollectionPoint, UnexploredTerrain)
+
+Goal state: SampleCollected(ExplorationRobot) SampleAnalyzed(ExplorationRobot)
+Actions:
+        Move(ExplorationRobot, fromLocation, toLocation)
+        Preconditions: At(ExplorationRobot, fromLocation)
+        Postconditions: At(ExplorationRobot, toLocation)
+
+        CollectSample(ExplorationRobot, sampleLocation)
+        Preconditions: At(ExplorationRobot, sampleLocation)
+        Postconditions: SampleCollected(ExplorationRobot)
+
+        AnalyzeSample(ExplorationRobot)
+        Preconditions: SampleCollected(ExplorationRobot)
+        Postconditions: SampleAnalyzed(ExplorationRobot)

@@ -1,0 +1,17 @@
+Initial state: At(Truck1, LocationA) At(Cargo1, LocationA) At(Truck2, LocationC) At(Cargo2, LocationC) 
+Goal state: At(Cargo1, LocationB),At(Cargo2, LocationD)
+
+Actions:
+        Move(vehicle, fromLocation, toLocation)
+        Preconditions: At(vehicle, fromLocation)
+        Postconditions: At(vehicle, toLocation)
+
+        Load(cargo, vehicle, location)
+        Preconditions: At(cargo, location), At(vehicle, location)
+        Postconditions: In(cargo, vehicle)
+
+        Unload(cargo, vehicle, location)
+        Preconditions: In(cargo, vehicle), At(vehicle, location)
+        Postconditions: At(cargo, location)
+
+  
