@@ -462,7 +462,7 @@ def breadth_first_search(world, state, goals):
 
     return None  # No solution found
 
-def linear_solver_helper(world, state, goals, current_plan, depth = 0):
+
     padding = "".join(["++" for _ in range(0, depth)]) + " "
     plan = []
 
@@ -691,8 +691,6 @@ def print_plan(plan):
 def home(request):
 
 
-    #filename="C:/Users/ASUS/Desktop/DjangoProject1/mas/myApp/Test/delivery4.txt"
-
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
         filename = os.path.join(settings.MEDIA_ROOT, 'uploaded_files', uploaded_file.name)
@@ -792,5 +790,4 @@ def home(request):
 
 
 
-#def home(request):
-    #return render(request,'home.html')
+
